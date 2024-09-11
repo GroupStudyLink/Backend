@@ -9,21 +9,23 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Study {
+public class StudyOwner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "study_id")
+    @Column(name = "study_owner_id")
     private Long id;
-    @Column(name = "study_name", nullable = false, length = 30)
-    private String name;
-    @Column(name = "study_participant_count")
-    private Long participantCount;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Study study;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
 
     @Builder
-    public Study(Long id, String name, Long participantCount) {
+    public StudyOwner(Long id, Study study, Member member) {
         this.id = id;
-        this.name = name;
-        this.participantCount = participantCount;
+        this.study = study;
+        this.member = member;
     }
 }
