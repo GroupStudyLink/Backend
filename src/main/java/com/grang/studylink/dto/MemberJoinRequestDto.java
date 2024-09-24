@@ -11,16 +11,16 @@ import lombok.*;
 public class MemberJoinRequestDto {
 
     private String email;
+    private String password;
     private String name;
     private String nickName;
-    private String password;
 
     public static MemberJoinRequestDto voToDto(MemberJoinRequestVo memberJoinRequestVo){
         return MemberJoinRequestDto.builder()
                 .email(memberJoinRequestVo.getEmail())
+                .password(memberJoinRequestVo.getPassword())
                 .name(memberJoinRequestVo.getName())
                 .nickName(memberJoinRequestVo.getNickName())
-                .password(memberJoinRequestVo.getPassword())
                 .build();
     }
 }
