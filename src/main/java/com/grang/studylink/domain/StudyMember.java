@@ -1,5 +1,6 @@
 package com.grang.studylink.domain;
 
+import com.grang.studylink.common.AdminStateEnum;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -26,6 +27,9 @@ public class StudyMember {
 
     @Column(name = "joined_at")
     private Date joined_at;
+
+    @Column(name = "OwnerState", nullable = false)
+    private AdminStateEnum adminStateEnum;
 
     @Builder
     public StudyMember(Long id, Member member, Study study, Date joined_at) {
