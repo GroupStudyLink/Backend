@@ -1,6 +1,7 @@
 package com.grang.studylink.common;
 
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -52,11 +53,21 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         String token = jwtUtil.createJwt(email, role, 60*60*10L);
 
         response.addHeader("Authorization", "Bearer " + token);
+        response.addCookie(createCookie("token", token));
     }
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed){
 
         response.setStatus(401);
+    }
+
+    private Cookie createCookie(String key, String value){
+        Cookie cookie = new Cookie(key, value);
+        cookie.setMaxAge(24*60*60);
+
+        cookie.setHttpOnly(true);
+
+        return cookie;
     }
 }
