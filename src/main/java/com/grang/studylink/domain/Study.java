@@ -17,13 +17,16 @@ public class Study {
     private Long id;
     @Column(name = "study_name", nullable = false, length = 30)
     private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private StudyCategory studyCategory;
     @Column(name = "study_participant_count")
     private Long participantCount;
 
     @Builder
-    public Study(Long id, String name, Long participantCount) {
+    public Study(Long id, String name, StudyCategory studyCategory, Long participantCount) {
         this.id = id;
         this.name = name;
+        this.studyCategory = studyCategory;
         this.participantCount = participantCount;
     }
 }
