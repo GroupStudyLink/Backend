@@ -5,10 +5,13 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@DynamicInsert
 public class Study {
 
     @Id
@@ -20,6 +23,7 @@ public class Study {
     @ManyToOne(fetch = FetchType.LAZY)
     private StudyCategory studyCategory;
     @Column(name = "study_participant_count")
+    @ColumnDefault("1")
     private Long participantCount;
 
     @Builder
