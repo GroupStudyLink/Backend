@@ -43,12 +43,11 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
 
-        String email = jwtUtil.getUsername(token);
+        String uuid = jwtUtil.getUsername(token);
         String role = jwtUtil.getRole(token);
 
         Member member = Member.builder()
-                .email(email)
-                .password("temppassword")
+                .uuid(uuid)
                 .build();
 
         CustumUserDetails custumUserDetails = new CustumUserDetails(member);

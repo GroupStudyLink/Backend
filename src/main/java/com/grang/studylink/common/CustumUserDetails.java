@@ -37,7 +37,7 @@ public class CustumUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return member.getEmail();
+        return member.getUuid();
     }
 
     @Override
