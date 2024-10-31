@@ -35,7 +35,6 @@ public class StudyServiceImpl implements StudyService{
         Study study = Study.builder()
                 .name(addStudyRequestDto.getName())
                 .studyCategory(studyCategory)
-                .participantCount(0L)
                 .build();
 
         //todo studyMember등록(스터디 만든 사람이라서 admin으로 등록해야됨.)
